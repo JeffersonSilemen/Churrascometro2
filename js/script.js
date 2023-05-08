@@ -1,42 +1,53 @@
-// Carne - 400g por pessoa / + de 6 horas = 650g
-// Cerveja - 1200ml por pessoa / + de 6 horas = 2000ml
-// Refrigerante - 1000ml por pessoa / + de 6 horas = 1500ml
-// Crianças valem por 0,5
-let inputAdultos = document.getElementById('adultos')
-let inputCriancas = document.getElementById('criancas')
-let inputDuracao = document.getElementById('duracao')
-let resultado = document.getElementById('resultado')
-
-function calcular() {
-    let carneTotal = carnePP(inputDuracao.value) * inputAdultos.value + carnePP(inputDuracao.value) * inputCriancas.value / 2;
-    let bebidaTotal = bebidasPP(inputDuracao.value) * inputAdultos.value + bebidasPP(inputDuracao.value) * inputCriancas.value / 2;
-    let cervejaTotal = cervejaPP(inputDuracao.value) * inputAdultos.value;
-
-    resultado.innerHTML = `<p>${carneTotal / 1000} kg de carne.</p>`
-    resultado.innerHTML += `<p>${Math.ceil(bebidaTotal / 355)} latas de cerveja.</p>`
-    resultado.innerHTML += `<p>${Math.ceil(cervejaTotal / 2000)} pet's de 2l de bebidas.</p>`
+//Dinamica das divs
+function mostrarCalc() {
+    phidden.style.display = 'block';
 }
 
-function carnePP (duracao) {
-    if (duracao >= 6) {
-        return 650;
-    } else {
-        return 400;
-    }
+function closeResult() {
+    result.style.display = 'none';
+    dados_info.style.display = 'block';
 }
 
-function cervejaPP (duracao) {
-    if (duracao >= 6) {
-        return 2000;
-    } else {
-        return 1200;
-    }
-}
+//Cálculo churrascometro
+let qadultos = document.getElementById('adultos');
+let qcriancas = document.getElementById('criancas');
+let qhoras = document.getElementById('duracao');
 
-function bebidasPP (duracao) {
-    if (duracao >= 6) {
-        return 1500;
+let resultado = document.getElementById('resultado');
+
+function mostrarResult() {
+    let adult = qadultos.value;
+    let children = qcriancas.value;
+    let time = qhoras.value;
+
+    if (time == 0) {
+        alert('Insira a quantidade de horas de churrasco!!!');
+        return;
+    } else if (children == 0 && adult == 0) {
+        alert('Insira os participantes do churrasco!!!')
+        return
     } else {
-        return 1000;
+        if (time >= 7) {
+            carne = 650;
+            cerveja = 2500;
+            bebida = 1500;
+        } else {
+            carne = 450;
+            cerveja = 1500;
+            bebida = 800;
+        }
+
+        let totalCarne = (carne * adult) + ((carne * children) / 2);
+        let totalCerveja = (cerveja * adult);
+        let totalBebida = (bebida * adult) + ((bebida * children) / 2);
+
+        phidden.style.display = 'none';
+        dados_info.style.display = 'none';
+        result.style.display = 'flex';
+
+        resultado.innerHTML = `<p>${totalCarne / 1000} Kg de Carne</p>`
+        resultado.innerHTML += `<p>${Math.ceil(totalCerveja / 355)} Latas de Cerveja</p>`
+        resultado.innerHTML += `<p>${Math.ceil(totalBebida / 2000)} Pet's 2l de Bebidas</p>`
+
     }
 }

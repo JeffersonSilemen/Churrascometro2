@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,35 @@
     <link rel="stylesheet" href="./style.css/style.css">
     <title>Churrascometro</title>
 </head>
+
 <body>
-    <main>
-        <div class="container">
-            <h1>Churrascômetro</h1>
-            <input type="number" name="adultos" id="adultos" placeholder="Adultos">
-            <input type="number" name="criancas" id="criancas" placeholder="Crianças">
-            <input type="number" name="duracao" id="duracao" placeholder="Duração">
-            <button onclick="calcular()">Calcular</button>
+    <div class="container">
+        <!-- Input -->
+        <div class="box">
+            <h1 class="title">Churrascômetro</h1>
+            <input class="input" type="number" placeholder="Quantidade de adultos:" id="adultos">
+            <input class="input" type="number" placeholder="Quantidade de crianças:" id="criancas">
+            <input class="input" type="number" placeholder="Duração do churrasco::" id="duracao">
+            <button onclick="mostrarResult()">Calcular</button>
+            <p id="dados_info" onclick="mostrarCalc()" class="dados_info">Como o cálculo é feito?</p>
+            <p id="phidden" class="dados"> Carne = 450g por pessoa, se a duração for maior que 7 horas = 650g por
+                pessoa; <br>
+                Cerveja = 1500ml por pessoa, se a duração for maior que 7 horas = 2500ml por pessoa; <br>
+                Refrigerante ou Agua = 800 ml por pessoa, se a duração for maior que 7 horas = 1500ml por pessoa; <br>
+                Crianças os parâmetros são metade dos adultos; </p>
 
-            <div id="resultado"></div>
+            <div id="result" class="result">
+                <div class="title_result">
+                    <h2>Resultado</h2>
+                    <div onclick="closeResult()" id="close">X</div>
+                </div>
+                <div id="resultado">
+
+                </div>
+            </div>
         </div>
-    </main>
-
-    <script src="./js/script.js"></script>
+    </div>
+    <script src="/js/script.js"></script>
 </body>
+
 </html>
